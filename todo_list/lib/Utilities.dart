@@ -1,9 +1,32 @@
-class Utilities {
-  
-  static const IP = "";
-  static const URL = "";
+import 'dart:convert';
 
-   List<String> LETRAS_DNI = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+import 'package:crypto/crypto.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class Utilities {
+
+  String IP = "";
+  static const URL = "";
+  final List<String> LETRAS_DNI = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+
+
+  Utilities (){}
+
+  /// Set
+  void setIP(String IP){
+    this.IP = IP;
+  }
+
+  /// Get
+  String getIP(){
+    return this.IP;
+  }
+
+  /// Get URL
+  String getURL(){
+    return URL;
+  }
 
    /// Función que comprueba si una cadena contiene texto o no.
    /// @return {bool} -- Devuelve True si la cadena pasada por parametro contiene texto. False si no.
@@ -40,4 +63,34 @@ class Utilities {
      
      return valido;
    }
+
+   /// Funcion que muestra una alerta
+   void mostrarAlertas(BuildContext context){
+    showDialog(
+        context: context,
+        builder: (BuildContext cont){
+          return AlertDialog(
+            title: Text("Warning"),
+            content: Text("Debe introducir un usuario y una contraseña valida. "),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Cerrar"))
+            ],
+          );
+        }
+    );
+   }
+
+   /// Método que convierte una cadena a el hash MD5
+   /// @param cadena {Sting} -- Cadena a convertir en el Hash MD5
+   /// @return {String} -- Devuelve el Hash MD5 de la cadena pasada por parametro.
+   String cadToMD5(String cadena){
+      var bytesUTF8 = utf8.encode(cadena);
+      var md5Resultado = md5.convert(bytesUTF8);
+      return md5Resultado.toString();
+   }
+
 }

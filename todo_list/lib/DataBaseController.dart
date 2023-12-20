@@ -14,4 +14,16 @@ class DataBaseController{
   void login (String us, String pass){
     
   }
+
+  void createAccount(String DNI, String nombre, String apellidos, String email, String pass) {
+
+  }
+
+  bool existeEmail(String email){
+    bool existe = false;
+
+
+
+    return existe;
+  }
 }

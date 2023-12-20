@@ -1,0 +1,6 @@
+-- ToDo
+
+DROP SCHEMA IF EXISTS ToDo_List;
+CREATE SCHEMA IF NOT EXISTS ToDo_List;
+
+USE ToDo_List;

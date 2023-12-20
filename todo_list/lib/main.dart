@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   if(u.contieneTexto(username) && u.contieneTexto(pass)){
                     dbc.login(username, u.cadToMD5(pass));
                   }else{
-                    u.mostrarAlertas(context);
+                    u.mostrarAlertas(context, "Debe introducir un usuario y una contraseña valida. ");
                   }
                 },
                 child: Row(
@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.black,
                     ),
                     Text(
-                      "New Account",
+                      "Crear cuenta",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,

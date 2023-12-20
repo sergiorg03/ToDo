@@ -9,7 +9,7 @@ class Utilities {
   String IP = "";
   static const URL = "";
   final List<String> LETRAS_DNI = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
-
+  final RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
 
   Utilities (){}
 
@@ -65,13 +65,13 @@ class Utilities {
    }
 
    /// Funcion que muestra una alerta
-   void mostrarAlertas(BuildContext context){
+   void mostrarAlertas(BuildContext context, String mensaje){
     showDialog(
         context: context,
         builder: (BuildContext cont){
           return AlertDialog(
             title: Text("Warning"),
-            content: Text("Debe introducir un usuario y una contraseña valida. "),
+            content: Text(mensaje),
             actions: <Widget>[
               TextButton(
                   onPressed: () {
@@ -85,7 +85,7 @@ class Utilities {
    }
 
    /// Método que convierte una cadena a el hash MD5
-   /// @param cadena {Sting} -- Cadena a convertir en el Hash MD5
+   /// @param {Sting} -- Cadena a convertir en el Hash MD5
    /// @return {String} -- Devuelve el Hash MD5 de la cadena pasada por parametro.
    String cadToMD5(String cadena){
       var bytesUTF8 = utf8.encode(cadena);
@@ -93,4 +93,17 @@ class Utilities {
       return md5Resultado.toString();
    }
 
+   /// Método que comprueba si un email está bien formado o no.
+   /// @param {String} -- Email a comprobar el formato
+   /// @return {bool} -- Devuelve true si el formato es correcto. False si no.
+   bool formatoEmail(String email){
+    bool valido = false;
+
+    // Comprobamos que el formato es correcto.
+    if(regex.hasMatch(email)){
+      valido = true;
+    }
+
+    return valido;
+   }
 }

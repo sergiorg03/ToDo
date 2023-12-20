@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list/DataBaseController.dart';
+import 'package:todo_list/Utilities.dart';
 
 class CreateAccount extends StatelessWidget {
+
+  Utilities u = Utilities();
+  DataBaseController dbc = DataBaseController();
 
   var dniController = TextEditingController();
   var nombreController = TextEditingController();

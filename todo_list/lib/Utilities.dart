@@ -89,4 +89,14 @@ class Utilities {
 
     return valido;
    }
+
+  bool formatoTelefono(String telefono){
+    bool valido = false;
+
+    if(telefono.length == 9 && esNumerico(telefono)){
+      valido = true;
+    }
+    
+    return valido;
+  }
 }

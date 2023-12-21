@@ -7,10 +7,10 @@ class CreateAccount extends StatelessWidget {
   Utilities u = Utilities();
   DataBaseController dbc = DataBaseController();
 
-  var dniController = TextEditingController();
   var nombreController = TextEditingController();
   var apellidosController = TextEditingController();
   var emailController = TextEditingController();
+  var telfController = TextEditingController();
   var contraController = TextEditingController();
 
   @override
@@ -22,66 +22,77 @@ class CreateAccount extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
+                padding: const EdgeInsets.all(5),
+                child: SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: TextField(
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(fontSize: 20),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(10),
+                        labelText: "Nombre",
+                    ),
+                    controller: nombreController,
+                  ),
+                )
+            ),
+            Padding(
+                padding: const EdgeInsets.all(5),
+                child: SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: TextField(
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(fontSize: 20),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(10),
+                        labelText: "Apellidos",
+                    ),
+                    controller: apellidosController,
+                  ),
+                )
+            ),
+            Padding(
+                padding: const EdgeInsets.all(5),
+                child: SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: TextField(
+                    textAlign: TextAlign.start,
+                    keyboardType: TextInputType.emailAddress,
+                    style: const TextStyle(fontSize: 20),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(10),
+                        labelText: "Email",
+                    ),
+                    maxLines: 1,
+                    controller: emailController,
+                  ),
+                )
+            ),
+            Padding(
                 padding: EdgeInsets.all(0),
                 child: SizedBox(
                   width: 200,
                   height: 50,
                   child: TextField(
                     textAlign: TextAlign.start,
+                    keyboardType: TextInputType.number,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(10),
-                        labelText: "DNI"),
-                    controller: dniController,
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.all(5),
-                child: SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: TextField(
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Nombre"),
-                    controller: nombreController,
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.all(5),
-                child: SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: TextField(
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Apellidos"),
-                    controller: apellidosController,
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.all(5),
-                child: SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: TextField(
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Email"),
+                        labelText: "Telefono",
+                    ),
                     maxLines: 1,
-                    controller: emailController,
+                    controller: telfController,
                   ),
-                )),
+                )
+            ),
             Padding(
               padding: const EdgeInsets.all(5),
               child: SizedBox(
@@ -108,19 +119,22 @@ class CreateAccount extends StatelessWidget {
               child: ElevatedButton(
                 key: const Key("CreateAccount"),
                 onPressed: () {
-                  if (u.contieneTexto(dniController.text) &&
-                      u.contieneTexto(nombreController.text) &&
+                  if (u.contieneTexto(nombreController.text) &&
                       u.contieneTexto(apellidosController.text) &&
                       u.contieneTexto(emailController.text) &&
+                      u.contieneTexto(telfController.text) &&
                       u.contieneTexto(contraController.text)) {
-                    if (u.comprobarDni(dniController.text)) {
-                      // Comprobacion del DNI
+
                       if (u.formatoEmail(emailController.text) &&
                           !existeEmail(emailController.text)) {
                         // Comprobacion email
+                        if(u.formatoTelefono(telfController.text)){ // Comprobamos el formato del número de telefono.
+
+                        }else{ // El numero de telefono tiene formato incorrecto
+
+                        }
                         // insertamos los datos en la base de datos.
                         dbc.createAccount(
-                            dniController.text,
                             nombreController.text,
                             apellidosController.text,
                             emailController.text,
@@ -130,11 +144,6 @@ class CreateAccount extends StatelessWidget {
                         u.mostrarAlertas(context,
                             "El email introducido tiene un formato incorrecto. ");
                       }
-                    } else {
-                      // DNI erroneo
-                      u.mostrarAlertas(context,
-                          "El DNI introducido no es correcto. Por favor introduzca un DNI correcto. ");
-                    }
                   } else
                     u.mostrarAlertas(
                         context, "Debe rellenar todos los campos. ");
@@ -170,11 +179,18 @@ class CreateAccount extends StatelessWidget {
   }
 
   bool existeEmail(String email){
-    final exi = dbc.obtenerEmail(email);
+    final existe = dbc.obtenerEmail(email);
 
-    bool existe = (exi == null)? true: false;
+    bool existeMail = (existe == null)? true: false;
 
-    return existe;
+    return existeMail;
   }
+  
+  bool existeTelf(String telf){
+    final existe = dbc.obtenerTelf(telf);
 
+    bool existeTelefono = (existe == null)? true: false;
+
+    return existeTelefono;
+  }
 }

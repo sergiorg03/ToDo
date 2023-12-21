@@ -7,6 +7,28 @@ import 'dart:async';
 class DataBaseController{
 
   Utilities u = Utilities();
+  late final String IP;
+  late final URL;
+
+  DataBaseController(){
+    this.IP = "";
+    this.URL = "";
+  }
+
+  /// Set
+  void setIP(String IP){
+    this.IP = IP;
+  }
+
+  /// Get
+  String getIP(){
+    return this.IP;
+  }
+
+  /// Get URL
+  String getURL(){
+    return URL;
+  }
 
   /// Metodo que realiza la petición a la api para hacer el login
   /// @param us {String} -- Usuario con el que realizar login
@@ -19,11 +41,11 @@ class DataBaseController{
 
   }
 
-  bool existeEmail(String email){
-    bool existe = false;
-
-
-
-    return existe;
+  /// Metodo que realiza la peticion a la API
+  ///
+  Future<bool> obtenerEmail(String email) async{
+    final response = await http.get(Uri.parse("ruta a la API"));
+    print(json.decode(response.body));
+    return json.decode(response.body);
   }
 }

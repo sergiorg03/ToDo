@@ -6,27 +6,10 @@ import 'package:flutter/material.dart';
 
 class Utilities {
 
-  String IP = "";
-  static const URL = "";
   final List<String> LETRAS_DNI = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
   final RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
 
   Utilities (){}
-
-  /// Set
-  void setIP(String IP){
-    this.IP = IP;
-  }
-
-  /// Get
-  String getIP(){
-    return this.IP;
-  }
-
-  /// Get URL
-  String getURL(){
-    return URL;
-  }
 
    /// Función que comprueba si una cadena contiene texto o no.
    /// @return {bool} -- Devuelve True si la cadena pasada por parametro contiene texto. False si no.

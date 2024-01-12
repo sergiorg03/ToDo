@@ -1,6 +1,8 @@
 // Se importan las librerias necesarias
 import 'Utilities.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import 'dart:convert';
 import 'dart:async';
 
@@ -38,15 +40,12 @@ class DataBaseController {
       String nombre, String apellidos, String email, String pass) {}
 
   /// Metodo que realiza la peticion a la API tara comprobar si existe el email o no.
-  Future<bool> obtenerEmail(String email) async {
-    final response = await http.get(Uri.parse("ruta a la API"));
-    print(json.decode(response.body));
-    return json.decode(response.body);
-  }
+  /*Future<bool> obtenerEmail(String email) async {
+
+  }*/
 
   /// Método que realiza la peticion a la API para comprobar si existe el telefono indicado o no.
-  Future<bool> obtenerTelf(String telf) async {
-    final response = await http.get(Uri.parse(""));
-    return json.decode(response.body);
-  }
+  /*Future<bool> obtenerTelf(String telf) async {
+
+  }*/
 }

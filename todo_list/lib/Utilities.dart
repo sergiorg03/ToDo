@@ -80,14 +80,8 @@ class Utilities {
    /// @param {String} -- Email a comprobar el formato
    /// @return {bool} -- Devuelve true si el formato es correcto. False si no.
    bool formatoEmail(String email){
-    bool valido = false;
-
     // Comprobamos que el formato es correcto.
-    if(regex.hasMatch(email)){
-      valido = true;
-    }
-
-    return valido;
+    return (regex.hasMatch(email))? true: false;
    }
 
   bool formatoTelefono(String telefono){

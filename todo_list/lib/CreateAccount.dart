@@ -125,8 +125,8 @@ class CreateAccount extends StatelessWidget {
                       u.contieneTexto(telfController.text) &&
                       u.contieneTexto(contraController.text)) {
 
-                      if (u.formatoEmail(emailController.text) &&
-                          !existeEmail(emailController.text)) {
+                      if (u.formatoEmail(emailController.text) /*&&
+                          !existeEmail(emailController.text)*/) {
                         // Comprobacion email
                         if(u.formatoTelefono(telfController.text)){ // Comprobamos el formato del número de telefono.
 
@@ -178,7 +178,7 @@ class CreateAccount extends StatelessWidget {
     );
   }
 
-  bool existeEmail(String email){
+/*bool existeEmail(String email){
     final existe = dbc.obtenerEmail(email);
 
     bool existeMail = (existe == null)? true: false;
@@ -192,5 +192,5 @@ class CreateAccount extends StatelessWidget {
     bool existeTelefono = (existe == null)? true: false;
 
     return existeTelefono;
-  }
+  }*/
 }

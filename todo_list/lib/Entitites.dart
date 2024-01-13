@@ -32,6 +32,16 @@ class Usuario {
   String get getApellidos => _apellidos;
   String get getTelf => _telf;
   String get getContra => _contra;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'email': _email,
+      'nombre': _nombre,
+      'apellidos': _apellidos,
+      'telf': _telf,
+      'contra': _contra
+    };
+  }
 }
 
 class Lista {
@@ -85,36 +95,72 @@ class Lista {
   DateTime get getFechaUltimaActualizacion => _fechaUltimaActualizacion;
   String get getEmailUsuario => _emailUsuario;
   bool get getCompletada => _completada;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': _idLista,
+      'emailUsuario': _emailUsuario,
+      'nombreLista': _nombreLista,
+      'descripcion': _descripcion,
+      'activa': _activa,
+      'fechaCreacion': _fechaCreacion.toIso8601String(),
+      'fechaUltimaActualizacion': _fechaUltimaActualizacion.toIso8601String(),
+      'completada': _completada
+    };
+  }
 }
 
 class ContenidoLista {
-  // Atributos privados
   int _idApartado;
   int _idLista;
+  String _emailUsuario;
   String _nombreApartado;
   bool _completado;
+  String _notas;
+  DateTime _fechaCreacion;
+  DateTime _fechaUltimaActualizacion;
 
-  // Constructor
   ContenidoLista({
     required int idApartado,
     required int idLista,
+    required String emailUsuario,
     required String nombreApartado,
     required bool completado,
+    required String notas,
+    required DateTime fechaCreacion,
+    required DateTime fechaUltimaActualizacion,
   })  : _idApartado = idApartado,
         _idLista = idLista,
+        _emailUsuario = emailUsuario,
         _nombreApartado = nombreApartado,
-        _completado = completado;
+        _completado = completado,
+        _notas = notas,
+        _fechaCreacion = fechaCreacion,
+        _fechaUltimaActualizacion = fechaUltimaActualizacion;
 
-  // Setters
-  set setIdApartado(int idApartado) => _idApartado = idApartado;
-  set setIdLista(int idLista) => _idLista = idLista;
-  set setNombreApartado(String nombreApartado) =>
-      _nombreApartado = nombreApartado;
-  set setCompletado(bool completado) => _completado = completado;
+  // Constructor para crear un objeto ContenidoLista desde un mapa.
+  ContenidoLista.fromMap(Map<String, dynamic> map)
+      : _idApartado = map['idApartado'],
+        _idLista = map['idLista'],
+        _emailUsuario = map['emailUsuario'],
+        _nombreApartado = map['nombreApartado'],
+        _completado = map['completado'],
+        _notas = map['notas'],
+        _fechaCreacion = DateTime.parse(map['fechaCreacion']),
+        _fechaUltimaActualizacion =
+            DateTime.parse(map['fechaUltimaActualizacion']);
 
-  // Getters
-  int get getIdApartado => _idApartado;
-  int get getIdLista => _idLista;
-  String get getNombreApartado => _nombreApartado;
-  bool get getCompletado => _completado;
+  // Método para convertir el objeto ContenidoLista a un mapa.
+  Map<String, dynamic> toMap() {
+    return {
+      'idApartado': _idApartado,
+      'idLista': _idLista,
+      'emailUsuario': _emailUsuario,
+      'nombreApartado': _nombreApartado,
+      'completado': _completado,
+      'notas': _notas,
+      'fechaCreacion': _fechaCreacion.toIso8601String(),
+      'fechaUltimaActualizacion': _fechaUltimaActualizacion.toIso8601String(),
+    };
+  }
 }

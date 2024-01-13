@@ -1,6 +1,7 @@
 // Se importan las librerias necesarias
 import 'package:flutter/material.dart';
 import 'package:todo_list/DataBaseController.dart';
+import 'package:todo_list/Entitites.dart';
 import 'package:todo_list/Utilities.dart';
 
 class CreateAccount extends StatelessWidget {
@@ -30,14 +31,13 @@ class CreateAccount extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: const TextStyle(fontSize: 20),
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Nombre",
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(10),
+                      labelText: "Nombre",
                     ),
                     controller: nombreController,
                   ),
-                )
-            ),
+                )),
             Padding(
                 padding: const EdgeInsets.all(5),
                 child: SizedBox(
@@ -47,14 +47,13 @@ class CreateAccount extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: const TextStyle(fontSize: 20),
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Apellidos",
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(10),
+                      labelText: "Apellidos",
                     ),
                     controller: apellidosController,
                   ),
-                )
-            ),
+                )),
             Padding(
                 padding: const EdgeInsets.all(5),
                 child: SizedBox(
@@ -65,15 +64,14 @@ class CreateAccount extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     style: const TextStyle(fontSize: 20),
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Email",
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(10),
+                      labelText: "Email",
                     ),
                     maxLines: 1,
                     controller: emailController,
                   ),
-                )
-            ),
+                )),
             Padding(
                 padding: EdgeInsets.all(0),
                 child: SizedBox(
@@ -84,15 +82,14 @@ class CreateAccount extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: "Telefono",
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(10),
+                      labelText: "Telefono",
                     ),
                     maxLines: 1,
                     controller: telfController,
                   ),
-                )
-            ),
+                )),
             Padding(
               padding: const EdgeInsets.all(5),
               child: SizedBox(
@@ -124,29 +121,35 @@ class CreateAccount extends StatelessWidget {
                       u.contieneTexto(emailController.text) &&
                       u.contieneTexto(telfController.text) &&
                       u.contieneTexto(contraController.text)) {
-
-                      if (u.formatoEmail(emailController.text) /*&&
-                          !existeEmail(emailController.text)*/) {
-                        // Comprobacion email
-                        if(u.formatoTelefono(telfController.text)){ // Comprobamos el formato del número de telefono.
-
-                        }else{ // El numero de telefono tiene formato incorrecto
-
-                        }
+                    if (u.formatoEmail(emailController
+                            .text) /*&&
+                          !existeEmail(emailController.text)*/
+                        ) {
+                      // Comprobacion email
+                      if (u.formatoTelefono(telfController.text)) {
+                        // Comprobamos el formato del número de telefono.
                         // insertamos los datos en la base de datos.
-                        dbc.createAccount(
-                            nombreController.text,
-                            apellidosController.text,
-                            emailController.text,
-                            u.cadToMD5(contraController.text));
+                        Usuario us = Usuario(
+                            email: emailController.text,
+                            nombre: nombreController.text,
+                            apellidos: apellidosController.text,
+                            telf: telfController.text,
+                            contra: u.cadToMD5(contraController.text));
+                        dbc.createAccount(us);
                       } else {
-                        // Email incorrecto
+                        // El numero de telefono tiene formato incorrecto
                         u.mostrarAlertas(context,
-                            "El email introducido tiene un formato incorrecto. ");
+                            "El número de telefono no tiene el formato correcto. ");
                       }
-                  } else
+                    } else {
+                      // Email incorrecto
+                      u.mostrarAlertas(context,
+                          "El email introducido tiene un formato incorrecto. ");
+                    }
+                  } else {
                     u.mostrarAlertas(
                         context, "Debe rellenar todos los campos. ");
+                  }
                 },
                 style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all<Size>(

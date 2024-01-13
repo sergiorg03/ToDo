@@ -130,12 +130,19 @@ COMMIT;
   /// @param pass {String} -- Contraseña de la cuenta en formato Hash MD5
   void login(String us, String pass) {}
 
+<<<<<<< HEAD
   /// Metodo que realiza la peticion a la API tara comprobar si existe el email o no.
+=======
+  void createAccount(
+      String nombre, String apellidos, String email, String pass) {}
+
+  /// Metodo que realiza la peticion a la DB tara comprobar si existe el email o no.
+>>>>>>> f998edeb83a0633894b70787ecfece638d5079d8
   /*Future<bool> obtenerEmail(String email) async {
 
   }*/
 
-  /// Método que realiza la peticion a la API para comprobar si existe el telefono indicado o no.
+  /// Método que realiza la peticion a la DB para comprobar si existe el telefono indicado o no.
   /*Future<bool> obtenerTelf(String telf) async {
 
   }*/

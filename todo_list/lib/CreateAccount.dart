@@ -121,6 +121,7 @@ class CreateAccount extends StatelessWidget {
                       u.contieneTexto(emailController.text) &&
                       u.contieneTexto(telfController.text) &&
                       u.contieneTexto(contraController.text)) {
+<<<<<<< HEAD
                     if (u.formatoEmail(emailController
                             .text) /*&&
                           !existeEmail(emailController.text)*/
@@ -128,6 +129,17 @@ class CreateAccount extends StatelessWidget {
                       // Comprobacion email
                       if (u.formatoTelefono(telfController.text)) {
                         // Comprobamos el formato del número de telefono.
+=======
+
+                      if (u.formatoEmail(emailController.text) /*&&
+                          !existeEmail(emailController.text)*/) {
+                        // Comprobacion email
+                        if(u.formatoTelefono(telfController.text) /*&& !existeTelf(telfController.text)*/){ // Comprobamos el formato del número de telefono y que no exista.
+
+                        }else{ // El numero de telefono tiene formato incorrecto o existe
+
+                        }
+>>>>>>> f998edeb83a0633894b70787ecfece638d5079d8
                         // insertamos los datos en la base de datos.
                         Usuario us = Usuario(
                             email: emailController.text,

@@ -39,12 +39,12 @@ class DataBaseController {
   void createAccount(
       String nombre, String apellidos, String email, String pass) {}
 
-  /// Metodo que realiza la peticion a la API tara comprobar si existe el email o no.
+  /// Metodo que realiza la peticion a la DB tara comprobar si existe el email o no.
   /*Future<bool> obtenerEmail(String email) async {
 
   }*/
 
-  /// Método que realiza la peticion a la API para comprobar si existe el telefono indicado o no.
+  /// Método que realiza la peticion a la DB para comprobar si existe el telefono indicado o no.
   /*Future<bool> obtenerTelf(String telf) async {
 
   }*/

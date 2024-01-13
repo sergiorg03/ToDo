@@ -128,9 +128,9 @@ class CreateAccount extends StatelessWidget {
                       if (u.formatoEmail(emailController.text) /*&&
                           !existeEmail(emailController.text)*/) {
                         // Comprobacion email
-                        if(u.formatoTelefono(telfController.text)){ // Comprobamos el formato del número de telefono.
+                        if(u.formatoTelefono(telfController.text) /*&& !existeTelf(telfController.text)*/){ // Comprobamos el formato del número de telefono y que no exista.
 
-                        }else{ // El numero de telefono tiene formato incorrecto
+                        }else{ // El numero de telefono tiene formato incorrecto o existe
 
                         }
                         // insertamos los datos en la base de datos.
